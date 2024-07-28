@@ -7,12 +7,40 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
- * Object
+ * Axes Helper
  */
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const mesh = new THREE.Mesh(geometry, material)
-scene.add(mesh)
+const axesHelper = new THREE.AxesHelper(2)
+scene.add(axesHelper)
+
+/**
+ * Objects
+ */
+const group = new THREE.Group();
+group.scale.y = 2;
+group.rotation.y = 0.2
+scene.add(group)
+
+const cube1 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xff9999})
+)
+cube1.position.x = -1.5;
+group.add(cube1);
+
+const cube2 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xff2334})
+)
+
+cube2.position.x = 0;
+group.add(cube2);
+
+const cube3 = new THREE.Mesh(
+    new THREE.BoxGeometry(1,1,1),
+    new THREE.MeshBasicMaterial({ color: 0xfffff})
+)
+cube3.position.x = 1.5;
+group.add(cube3);
 
 /**
  * Sizes
