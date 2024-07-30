@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
+
 /**
  * Base
  */
@@ -9,14 +10,6 @@ const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
-
-/**
- * Object
- */
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const mesh = new THREE.Mesh(geometry, material)
-scene.add(mesh)
 
 /**
  * Sizes
@@ -54,6 +47,74 @@ scene.add(camera)
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
+
+/**
+* Texture
+*/
+
+const loadingManager = new THREE.LoadingManager();
+loadingManager.onStart = () =>
+{
+    console.log('loading started')
+}
+loadingManager.onLoad = () => 
+{
+    console.log('loading finished')
+}
+loadingManager.onProgress = () =>
+{
+    console.log('loading progressing')
+}
+loadingManager.onError = () =>
+{
+    console.log('loading error')
+}
+
+const textureLoader = new THREE.TextureLoader(loadingManager);
+
+const colorTexture = textureLoader.load('/textures/door/color.jpg')
+colorTexture.colorSpace = THREE.SRGBColorSpace
+const alphaTexture = textureLoader.load('/textures/door/alpha.jpg')
+const heightTexture = textureLoader.load('/textures/door/height.jpg')
+const normalTexture = textureLoader.load('/textures/door/normal.jpg')
+const ambientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
+const metalnessTexture = textureLoader.load('/textures/door/metalness.jpg')
+const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg')
+
+// const textureLoader = new THREE.TextureLoader();
+// const texture = textureLoader.load('/textures/door/color.jpg')
+// texture.colorSpace = THREE.SRGBColorSpace;
+
+// You can do this:
+
+// const textureLoader = new THREE.TextureLoader()
+// const texture = textureLoader.load(
+//     '/textures/door/color.jpg',
+//     () =>
+//     {
+//         console.log('loading finished')
+//     },
+//     () =>
+//     {
+//         console.log('loading progressing')
+//     },
+//     () =>
+//     {
+//         console.log('loading error')
+//     }
+// )
+// texture.colorSpace = THREE.SRGBColorSpace
+
+/**
+ * Object
+ */
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshBasicMaterial({ map: colorTexture })
+const mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)
+
+
+
 
 /**
  * Renderer
