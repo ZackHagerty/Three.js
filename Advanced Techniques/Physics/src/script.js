@@ -161,7 +161,7 @@ let oldElapsedTime = 0;
 /**
 * Sounds 
 **/
-const hitSound = new Audio('/sounds/hit.mp3')
+const hitSound = new Audio('./sounds/hit.mp3')
 
 const playHitSound = (collision) =>
 {
