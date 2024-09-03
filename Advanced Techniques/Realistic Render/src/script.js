@@ -80,28 +80,28 @@ rgbeLoader.load('/environmentMaps/0/2k.hdr', (environmentMap) =>
  */
 
 // Helmet
-// gltfLoader.load(
-//     '/models/FlightHelmet/glTF/FlightHelmet.gltf',
-//     (gltf) =>
-//     {
-//         gltf.scene.scale.set(10, 10, 10)
-//         scene.add(gltf.scene)
-
-//         updateAllMaterials()
-//     }
-// )
-
 gltfLoader.load(
-    '/models/hamburger.glb',
+    '/models/FlightHelmet/glTF/FlightHelmet.gltf',
     (gltf) =>
     {
-        gltf.scene.scale.set(0.4, 0.4, 0.4)
-        gltf.scene.position.set(0, 2.5, 0)
+        gltf.scene.scale.set(10, 10, 10)
         scene.add(gltf.scene)
 
         updateAllMaterials()
     }
 )
+
+// gltfLoader.load(
+//     '/models/hamburger.glb',
+//     (gltf) =>
+//     {
+//         gltf.scene.scale.set(0.4, 0.4, 0.4)
+//         gltf.scene.position.set(0, 2.5, 0)
+//         scene.add(gltf.scene)
+
+//         updateAllMaterials()
+//     }
+// )
 
 const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(8, 8),
