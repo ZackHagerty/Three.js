@@ -22,7 +22,7 @@ const scene = new THREE.Scene()
  * Water
  */
 // Geometry
-const waterGeometry = new THREE.PlaneGeometry(2, 2, 512, 512)
+const waterGeometry = new THREE.BoxGeometry(2, 2, 2, 512, 512)
 
 // Colors
 debugObject.depthColor = '#186691'
