@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+
 import particlesVertexShader from './shaders/particles/vertex.glsl'
 import particlesFragmentShader from './shaders/particles/fragment.glsl'
 
@@ -69,7 +70,7 @@ renderer.setPixelRatio(sizes.pixelRatio)
 /**
  * Particles
  */
-const particlesGeometry = new THREE.PlaneGeometry(10, 10, 32, 32)
+const particlesGeometry = new THREE.PlaneGeometry(10, 10, 128, 128)
 
 const particlesMaterial = new THREE.ShaderMaterial({
     vertexShader: particlesVertexShader,
@@ -77,6 +78,7 @@ const particlesMaterial = new THREE.ShaderMaterial({
     uniforms:
     {
         uResolution: new THREE.Uniform(new THREE.Vector2(sizes.width * sizes.pixelRatio, sizes.height * sizes.pixelRatio)),
+        uPictureTexture: new THREE.Uniform(textureLoader.load('./picture-1.png')) 
     }
 })
 const particles = new THREE.Points(particlesGeometry, particlesMaterial)
