@@ -13,7 +13,6 @@ export default {
     build:
     {
         outDir: '../dist', // Output in the dist/ folder
-        target: 'esnext',
         emptyOutDir: true, // Empty the folder first
         sourcemap: true // Add sourcemap
     },
