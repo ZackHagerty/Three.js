@@ -1,0 +1,9 @@
+.cuteParagraph {
+    color: coral;
+    background: floralwhite;
+}
+
+.buttonRow{
+    display: flex;
+    flex-direction: row;
+}
