@@ -1,19 +1,34 @@
 import Clicker from './Clicker.jsx';
 import { useState } from 'react';
 
-export default function App()
+export default function App( { clickerCount, children })
 {
     const [ hasClicker, setHasClicker ] = useState(true);
+    const [ count, setCount ] = useState(0)
 
     const toggleClickerClick = () => 
     {
         setHasClicker(!hasClicker);
     }
 
+    const increment = () =>
+    {
+        setCount(count + 1)
+    }
+
     return <>
+        { children }
+        <div>Total count: { count }</div>
         <button onClick= { toggleClickerClick }>{ hasClicker ? 'Hide' : 'Show' } Clicker</button> 
-        { hasClicker && <Clicker keyName="countA"></Clicker> }
-        { hasClicker && <Clicker keyName="countB"></Clicker> }
-        { hasClicker && <Clicker keyName="countC"></Clicker> }
+        <br />
+        { hasClicker && <>
+            { [...Array(clickerCount)].map((value, index) =>
+                <Clicker
+                    key={ index }
+                    increment={ increment }
+                    keyName={ `count${index}` }
+                />
+            ) }
+        </> }
     </>
 }

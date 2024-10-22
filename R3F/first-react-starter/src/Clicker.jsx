@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 
-export default function Clicker()
+export default function Clicker({ increment, keyName })
 {
-    const [ count, setCount ] = useState(0)
-    const savedCount = parseInt(localStorage.getItem('count') ?? 0)
+    const [ count, setCount ] = useState(parseInt(localStorage.getItem(keyName) ?? 0))
 
     useEffect(() =>
     {
         return () =>
         {
-            localStorage.removeItem('count')
+            localStorage.removeItem(keyName)
         }
     }, [])
 
     useEffect(() =>
     {
-        localStorage.setItem('count', count)
+        localStorage.setItem(keyName, count)
     }, [count])
 
-    const buttonClick = () => 
+    const buttonClick = () =>
     {
-        setCount(value => value + 1)
+        setCount(count + 1)
+        increment()
     }
 
     return <div className="button-row">
